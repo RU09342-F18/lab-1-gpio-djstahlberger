@@ -43,21 +43,23 @@
  *
  * --/COPYRIGHT--*/
 //******************************************************************************
-//  MSP430G2xx3 Demo - Software Toggle P1.0
+//  MSP430G2xx3 Demo - Poll P1 With Software with Internal Pull-up
 //
-//  Description; Toggle P1.0 by xor'ing P1.0 inside of a software loop.
+//  Description: Poll P1.4 in a loop, if hi P1.0 is set, if low, P1.0 reset.
+//  Internal pullup enabled on P1.4.
 //  ACLK = n/a, MCLK = SMCLK = default DCO
 //
-//                MSP430G2xx3
-//             -----------------
-//         /|\|              XIN|-
-//          | |                 |
-//          --|RST          XOUT|-
-//            |                 |
-//            |             P1.0|-->LED
+//               MSP430G2xx3
+//            -----------------
+//        /|\|              XIN|-
+//         | |                 |
+//         --|RST          XOUT|-
+//     /|\   |      R          |
+//      --o--| P1.4-o      P1.0|-->LED
+//     \|/
 //
 //  D. Dang
-//  Texas Instruments, Inc
+//  Texas Instruments Inc.
 //  December 2010
 //   Built with CCS Version 4.2.0 and IAR Embedded Workbench Version: 5.10
 //******************************************************************************
@@ -67,21 +69,17 @@
 int main(void)
 {
   WDTCTL = WDTPW + WDTHOLD;                 // Stop watchdog timer
+  P1DIR |= BIT0;                             // Set P1.0 as output
+  P1DIR &= ~BIT3;                           //Set p1.3 as input
 
-  P1DIR |= 0x01;                            // Set P1.0 to output direction
-  P1DIR |= BIT6;                            // Set P1.6 to output direction
 
-  volatile unsigned int i;
-  volatile unsigned int k;
-
-  while(1)                                  // continuous loop
-    {
-      P1OUT ^= BIT0;                          // XOR P1.0
-          for(k=0;k<7;k++){                 //Loops P1.6
-
-      P1OUT ^= BIT6;                          // XOR P1.6
-          for(i=10000;i>0;i--);                   // Delay
-          }
+  while (1)                                 // Test P1.3
+  {
+    if (P1IN & BIT3) {
+        P1OUT &= ~BIT0;         // if P1.3 set, set P1.0
     }
 
+    else P1OUT |= BIT0;         // else reset
+  }
 }
+

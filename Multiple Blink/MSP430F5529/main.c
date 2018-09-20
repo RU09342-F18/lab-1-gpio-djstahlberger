@@ -78,7 +78,7 @@ int main(void)
   while(1)                                  // continuous loop
   {
     P1OUT ^= BIT0;                          // XOR P1.0
-        for(k=0;k<7;k++){
+        for(k=0;k<7;k++){                   // Loops P4.7
 
     P4OUT ^= BIT7;                          // XOR P4.7
         for(i=10000;i>0;i--);                   // Delay
