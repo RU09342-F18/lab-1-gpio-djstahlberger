@@ -77,11 +77,11 @@ int main(void)
 
   while(1)                                  // continuous loop
   {
-    P1OUT ^= BIT0;                          // XOR P1.0
-        for(k=0;k<7;k++){                   // Loops P4.7
+    P1OUT ^= BIT0;                          // XOR P1.0 (Toggles LED)
+        for(k=0;k<7;k++){                   // Loops P4.7 (1.0 blinks once while 4.7 blinks 7 times)
 
-    P4OUT ^= BIT7;                          // XOR P4.7
-        for(i=10000;i>0;i--);                   // Delay
+    P4OUT ^= BIT7;                          // XOR P4.7 (Toggles LED)
+        for(i=10000;i>0;i--);                   // Delay so the blink is visible
         }
   }
 }

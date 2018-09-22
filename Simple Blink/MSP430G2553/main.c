@@ -66,17 +66,14 @@
 
 int main(void)
 {
-  WDTCTL = WDTPW + WDTHOLD;                 // Stop watchdog timer
-  P1DIR |= 0x01;                            // Set P1.0 to output direction
+  volatile unsigned int i;                  //volatile unsigned variable to be used in the for loop
 
-  for (;;)
+  WDTCTL = WDTPW+WDTHOLD;                   // Stop WDT so MSP430 doesn't get reset
+  P1DIR |= BIT0;                            // P1.0 set as output
+
+  while(1)                                  // continuous loop
   {
-    volatile unsigned int i;
-
-    P1OUT ^= 0x01;                          // Toggle P1.0 using exclusive-OR
-
-    i = 5000;                              // Delay
-    do (i--);
-    while (i != 0);
+    P1OUT ^= BIT0;                          // Toggle P1.0 by XORing itself with BIT0
+    for(i=5000;i>0;i--);                   // Delay so the blink i visible to the human eye
   }
 }

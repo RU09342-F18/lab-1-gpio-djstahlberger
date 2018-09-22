@@ -71,16 +71,16 @@ int main(void)
   P1DIR |= 0x01;                            // Set P1.0 to output direction
   P1DIR |= BIT6;                            // Set P1.6 to output direction
 
-  volatile unsigned int i;
+  volatile unsigned int i;                  //Two integers for each of the for loops below
   volatile unsigned int k;
 
   while(1)                                  // continuous loop
     {
-      P1OUT ^= BIT0;                          // XOR P1.0
-          for(k=0;k<7;k++){                 //Loops P1.6
+      P1OUT ^= BIT0;                          // XOR P1.0 (Toggles the LED)
+          for(k=0;k<7;k++){                 //Loops P1.6 (Blinks 1.0 once for every 7 times 1.6 blinks)
 
-      P1OUT ^= BIT6;                          // XOR P1.6
-          for(i=10000;i>0;i--);                   // Delay
+      P1OUT ^= BIT6;                          // XOR P1.6 (Toggles the LED)
+          for(i=10000;i>0;i--);                   // Delay so the blinks are visible
           }
     }
 
