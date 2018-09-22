@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v18.1.2                     
 ******************************************************************************
->> Linked Wed Sep 12 18:08:54 2018
+>> Linked Fri Sep 21 22:01:11 2018
 
 OUTPUT FILE NAME:   <Multiple Blink MSP430G2553.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 0000c04c
