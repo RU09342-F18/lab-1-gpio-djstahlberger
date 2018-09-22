@@ -7,6 +7,9 @@ This code is the same as the multiple blink project for the MSP430G2553.
 
 That code can be found in the master branch under Multiple Blink
 
+## Video
+[Off board blink!] (https://drive.google.com/file/d/1lSzcqBZ2AMvRVfbd9_6Ap2sSYYWkiq2G/view?usp=sharing)
+
 ## Where can I use this
 This code only works on the MSP430G2553 because the chip being used on the breadboard is the chip from this board. This was accomplished by connecting the pins for VCC and ground using jumpers and offboard LEDS were used instead of the LEDS on the board to demonstrate the program
 
